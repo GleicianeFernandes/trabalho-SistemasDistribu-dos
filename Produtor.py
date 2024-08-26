@@ -17,12 +17,5 @@ channel.basic_publish(exchange='',
 
 print(f" [x] Mensagem enviada: '{mensagem}'")
 
-# Função chamada para tratar as respostas do consumidor
-def callback(ch, method, properties, body):
-    print(f" [x] Resposta do consumidor: {body.decode('utf-8')}")
-
-# Escutando as respostas na mesma fila
-channel.basic_consume(queue='hello', on_message_callback=callback, auto_ack=True)
-
-print(' [*] Aguardando respostas...')
-channel.start_consuming()
+# Fechando a conexão
+connection.close()
